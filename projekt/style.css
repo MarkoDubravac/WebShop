@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@400;700&family=Rubik&display=swap");
+/* global classes */
+button,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* typography */
+.font-roboto {
+  font-family: "Roboto", cursive;
+}
+
+.font-rale {
+  font-family: "Raleway", cursive;
+}
+
+.font-rubik {
+  font-family: "Rubik", cursive;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+/* Color Template */
+.color-primary {
+  color: #003859;
+}
+
+.color-primary-bg {
+  background: #003859;
+}
+
+.color-second {
+  color: #00a5c4;
+}
+
+.color-second-bg {
+  background: #00a5c4;
+}
+
+.color-yellow {
+  color: #ffd289;
+}
+
+.color-yellow-bg {
+  background: #ffd289;
+}
+
+/* top sale template */
+#top-sale .owl-carousel .item .product a {
+  overflow: hidden;
+}
+
+#top-sale .owl-carousel .item .product img {
+  transition: transform 0.5s ease;
+}
+
+#top-sale .owl-carousel .item .product img:hover {
+  transform: scale(1.1);
+}
+
+.owl-carousel .owl-nav button {
+  position: absolute;
+  top: 30%;
+  outline: none;
+}
+
+.owl-carousel .owl-nav button.owl-prev {
+  left: 0;
+}
+
+.owl-carousel .owl-nav button.owl-prev span,
+.owl-carousel .owl-nav button.owl-next span {
+  font-size: 35px;
+  color: #003859;
+  padding: 0 1rem;
+}
+
+.owl-carousel .owl-nav button.owl-prev span {
+  margin-left: -4rem;
+}
+
+.owl-carousel .owl-nav button.owl-next span {
+  margin-right: -4rem;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+  right: 0;
+}
+
+/* special price section template */
+#special-price .grid .grid-item {
+  margin-right: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* header template */
+.py-2.rounded-pill.color-primary-bg {
+  text-decoration: none;
+}
+
+/* text-overlay*/
+
+.text-overlay {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.text-overlay h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.text-overlay p {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */
