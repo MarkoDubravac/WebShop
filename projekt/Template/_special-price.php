@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-$in_cart = $cart->getCartId($product->getData('cart'));
+$in_cart = array_column($filteredCart, 'item_id');
 ?>
 <section id="special-price">
     <div class="container">
@@ -54,7 +54,7 @@ $in_cart = $cart->getCartId($product->getData('cart'));
                             </div>
                             <form method="post">
                                 <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? "1"; ?>">
-                                <input type="hidden" name="user_id" value="<?php echo 1; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?? "1" ?>">
                                 <?php
                                 if (in_array($item['item_id'],  $in_cart ?? [])) {
                                     echo '<button type="submit" disabled class="btn btn-success font-size-12">

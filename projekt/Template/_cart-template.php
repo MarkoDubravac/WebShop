@@ -6,6 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (isset($_POST['wishlist-submit'])){
         $cart->saveForLater($_POST['item_id']);
     }
+    if (isset($_POST['buy-submit'])) {
+        $cart->emptyCart($_SESSION['id']);
+
+    }
 }
 ?>
 <section id="cart" class="py-3">
@@ -16,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="col-sm-9">
                 <?php
                 foreach ($product->getData('cart') as $item) :
+                if ($item['user_id'] == $_SESSION['id']) :
                     $cartArr = $product->getProduct($item['item_id']);
                     $subTotal[] = array_map(function ($item){
                         ?>
@@ -91,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <?php
                         return $item['item_price'];
                     }, $cartArr);
+                endif;
                 endforeach;
                 ?>
             </div>
@@ -102,9 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </h6>
                     <div class="border-top py-4">
                         <h5 class="font-roboto font-size-20">Subtotal (<?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $cart->getSum($subTotal) : 0; ?></span> </span> </h5>
-                        <button type="submit" class="btn btn-warning mt-3">
+                        <form method="post">
+                            <input type="hidden" value="<?php echo $_SESSION['id'] ?? 0 ?>" name="item_id">
+                        <button type="submit" name="buy-submit" class="btn btn-warning mt-3">
                             Proceed to Buy
                         </button>
+                        </form>
                     </div>
                 </div>
             </div>

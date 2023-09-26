@@ -1,8 +1,11 @@
 <?php
-//require MySql Con
 use database\Cart;
 use database\DBController;
 use database\Product;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 require('database/DBController.php');
 
@@ -20,6 +23,15 @@ $product_shuffle = $product->getData();
 
 $cart = new Cart($db);
 
+$filteredCart = array();
+
+if(isset($_SESSION) && isset($_SESSION['id'])):
+foreach ($product->getData('cart') as $item) :
+    if (isset($item['user_id']) && $item['user_id'] == $_SESSION['id']) :
+        $filteredCart[] = $item;
+    endif;
+    endforeach;
+    endif;
 
 
 

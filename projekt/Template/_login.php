@@ -1,4 +1,10 @@
 <?php
+
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+
+}
+
 if (isset($_POST['k_ime']) && isset($_POST['lozinka'])) {
 
     function validate($data){
@@ -12,10 +18,10 @@ if (isset($_POST['k_ime']) && isset($_POST['lozinka'])) {
     $password = validate($_POST['lozinka']);
 
     if (empty($user_name)) {
-        header("Location: login.php?error=Niste unjeli korisničko ime");
+        header("Location: login.php?error=You didn't enter user name!");
         exit();
     } else if (empty($password)) {
-        header("Location: login.php?error=Niste unjeli lozinku");
+        header("Location: login.php?error=You didn't enter password!");
         exit();
     } else {
         // Retrieve the hashed password from the database
@@ -30,15 +36,15 @@ if (isset($_POST['k_ime']) && isset($_POST['lozinka'])) {
             if (password_verify($password, $hashed_pass)) {
                 $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['name'] = $row['name'];
-                $_SESSION['id'] = $row['id'];
+                $_SESSION['id'] = $row['user_id'];
                 header("Location: index.php");
                 exit();
             } else {
-                header("Location: login.php?error=Neispravna lozinka");
+                header("Location: login.php?error=Incorrect password!");
                 exit();
             }
         } else {
-            header("Location: login.php?error=Neispravno korisničko ime");
+            header("Location: login.php?error=Something went wrong!");
             exit();
         }
     }
@@ -65,6 +71,9 @@ if (isset($_POST['k_ime']) && isset($_POST['lozinka'])) {
 <div>
     <a href="register.php" class="text-decoration-none">Don't have an account? Register here!</a>
 </div>
+<?php if (isset($_GET['error'])) { ?>
+     		<p class="text-danger"><?php echo $_GET['error']; ?></p>
+     	<?php } ?>
 </div>
 </div>
 

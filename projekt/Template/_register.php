@@ -17,16 +17,16 @@ if (isset($_POST['ime']) && isset($_POST['k_ime']) && isset($_POST['lozinka']) &
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
     if (empty($name)) {
-        header("Location: registracija.php?error=Niste unjeli vaše ime");
+        header("Location: register.php?error=You didn't enter your name!");
         exit();
     }else if (empty($uname)) {
-        header("Location: registracija.php?error=Niste unjeli korisničko ime");
+        header("Location: register.php?error=You didn't enter your user name!");
         exit();
     }else if(empty($pass)){
-        header("Location: registracija.php?error=Niste unjeli lozinku");
+        header("Location: register.php?error=You didn't enter password!");
         exit();
     }else if($pass != $pass2){
-        header("Location: registracija.php?error=Niste unjeli jednake lozinke");
+        header("Location: register.php?error=You didn't enter equal passwords!");
         exit();
     }else{
 
@@ -35,7 +35,7 @@ if (isset($_POST['ime']) && isset($_POST['k_ime']) && isset($_POST['lozinka']) &
         if ($db->con->query($sql) === TRUE) {
             echo "Dodani ste u bazu";
         }else{
-            header("Location: registracija.php?error=Nešto je krenulo po zlu");
+            header("Location: registracija.php?error=Something went wrong!");
             exit();
         }
     }
@@ -76,6 +76,9 @@ if (isset($_POST['ime']) && isset($_POST['k_ime']) && isset($_POST['lozinka']) &
     <a href="login.php" class="text-decoration-none">Already have an account? Log in here!</a>
 </div>
     </div>
+    <?php if (isset($_GET['error'])) { ?>
+     		<p class="text-danger"><?php echo $_GET['error']; ?></p>
+     	<?php } ?>
 </div>
 
 

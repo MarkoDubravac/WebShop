@@ -63,6 +63,16 @@ class Cart
         }
     }
 
+    public function emptyCart($user_id = null, $table = 'cart') {
+        if($user_id != null) {
+            $result = $this->db->con->query("DELETE FROM $table WHERE user_id = $user_id");
+            if ($result) {
+                header("Location: " . $_SERVER['PHP_SELF']);
+            }
+            return $result;
+        }
+    }
+
     public function getCartId($cartArray = null, $key = "item_id") {
         if($cartArray != null) {
             $cart_id = array_map(function ($value) use($key) {
